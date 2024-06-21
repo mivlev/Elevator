@@ -1,5 +1,6 @@
 import argparse
 
+
 # Global variable for single floor travel time
 single_floor_travel_time = 10
 
@@ -57,7 +58,7 @@ def elevator(start: int, floors_to_visit: list[int]) -> None:
     dist_down = start - min(floors_to_visit)
     dist_up = max(floors_to_visit) - start
 
-    # Calls to first helper function
+    # Calls to the first helper function
     if dist_down < dist_up or dist_down == dist_up:
         calc_floor_order(True, start, floors_to_visit)
     else:
@@ -71,13 +72,13 @@ if __name__ == "__main__":
     # Parses command line arguments passed in by the user
     parser = argparse.ArgumentParser(description="Simulation of an elevator")
     parser.add_argument("start", type=int, help="The floor that the elevator starts on. Example: 3")
-    parser.add_argument("floors_to_visit", type=str, help="List of floors that the elevator needs to visit. Example: 1,2,3,4")
+    parser.add_argument("floors_to_visit", type=str, help="List of floors to visit. Example: 1,2,3,4")
     args = parser.parse_args()
 
-    floors_to_visit = args.floors_to_visit.split(',')
+    floors_to_visit_input = args.floors_to_visit.split(',')
 
     # Invalid input handling
     try:
-        elevator(args.start, [int(x) for x in floors_to_visit])
-    except:
+        elevator(args.start, [int(x) for x in floors_to_visit_input])
+    except Exception:
         print("Invalid input. Please run the following command for help: python elevator.py -h")
