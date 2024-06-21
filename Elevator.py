@@ -80,5 +80,5 @@ if __name__ == "__main__":
     # Invalid input handling
     try:
         elevator(args.start, [int(x) for x in floors_to_visit_input])
-    except Exception:
+    except ValueError:
         print("Invalid input. Please run the following command for help: python elevator.py -h")
