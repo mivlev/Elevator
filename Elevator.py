@@ -1,6 +1,7 @@
 # Global variable for single floor travel time
 single_floor_travel_time = 10
 
+
 # Function that calculates total travel time given an ordered list of floors to visit
 def calc_travel_time(floor_order: list[int]) -> None:
     travel_time = 0
@@ -23,7 +24,6 @@ def calc_floor_order(direction: bool, start: int, floors_to_visit_sorted: list[i
     # Get index of start floor
     start_floor_idx = floors_to_visit_sorted.index(start)
 
-
     # Elevator moves down first
     if direction:
         # All floors to visit below starting floor in descending order, then floors above in ascending order
@@ -41,7 +41,8 @@ def calc_floor_order(direction: bool, start: int, floors_to_visit_sorted: list[i
 
     return
 
-def Elevator(start: int, floors_to_visit: list[int]) -> None:
+
+def elevator(start: int, floors_to_visit: list[int]) -> None:
 
     # Adds starting floor to list of floors to visit
     if start not in floors_to_visit:
@@ -63,6 +64,7 @@ def Elevator(start: int, floors_to_visit: list[int]) -> None:
 
     return
 
+
 if __name__ == "__main__":
 
-    Elevator(2, [3, 1, -1, 0])
+    elevator(2, [3, 1, -1, 0])
