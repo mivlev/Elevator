@@ -6,6 +6,7 @@
 ```
 pip install -r requirements.txt
 ```
+* Navigate to the 'src' directory
 
 * Run using the following command. starting floor should be an integer and floors to visit 
 should be a comma separated list of integers.

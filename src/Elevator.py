@@ -6,22 +6,20 @@ single_floor_travel_time = 10
 
 
 # Function that calculates total travel time given an ordered list of floors to visit
-def calc_travel_time(floor_order: list[int]) -> None:
+def calc_travel_time(floor_order: list[int]) -> int:
     travel_time = 0
 
     # Iterates through list of floors to visit and calculates travel time between each pair of floors
     for i in range(len(floor_order) - 1):
         travel_time += abs(floor_order[i] - floor_order[i + 1]) * single_floor_travel_time
 
-    print(f"Travel time: {travel_time}\nOrder of floors visited: {floor_order}")
-
-    return
+    return travel_time
 
 
 # Function that calculates the order in which floors will be visited
 # Takes a boolean "direction" that indicates the direction that the elevator moves first,
 # as well as the sorted list of floors to visit and the starting floor
-def calc_floor_order(direction: bool, start: int, floors_to_visit_sorted: list[int]) -> None:
+def calc_floor_order(direction: bool, start: int, floors_to_visit_sorted: list[int]) -> list[int]:
 
     # Get index of start floor
     start_floor_idx = floors_to_visit_sorted.index(start)
@@ -38,10 +36,7 @@ def calc_floor_order(direction: bool, start: int, floors_to_visit_sorted: list[i
         floor_order = floors_to_visit_sorted[start_floor_idx:len(floors_to_visit_sorted)]
         floor_order.extend(floors_to_visit_sorted[0:start_floor_idx][::-1])
 
-    # Calls final helper function
-    calc_travel_time(floor_order)
-
-    return
+    return floor_order
 
 
 def elevator(start: int, floors_to_visit: list[int]) -> None:
@@ -60,9 +55,14 @@ def elevator(start: int, floors_to_visit: list[int]) -> None:
 
     # Calls to the first helper function
     if dist_down < dist_up or dist_down == dist_up:
-        calc_floor_order(True, start, floors_to_visit)
+        floor_order = calc_floor_order(True, start, floors_to_visit)
     else:
-        calc_floor_order(False, start, floors_to_visit)
+        floor_order = calc_floor_order(False, start, floors_to_visit)
+
+    # Call final helper function
+    travel_time = calc_travel_time(floor_order)
+
+    print(f"Travel time: {travel_time}\nOrder of floors visited: {floor_order}")
 
     return
 
